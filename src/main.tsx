@@ -10,3 +10,5 @@ ReactDOM.createRoot(document.getElementById("intro3")!).render(
     <App />
   </React.StrictMode>
 );
+
+console.log("Sonar Build An Interaction is running");
