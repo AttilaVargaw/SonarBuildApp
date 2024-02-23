@@ -15,7 +15,7 @@ dependencies:
 devDependencies:
   '@rollup/plugin-inject':
     specifier: ^5.0.5
-    version: 5.0.5
+    version: 5.0.5(rollup@4.12.0)
   '@types/react':
     specifier: ^18.2.58
     version: 18.2.58
@@ -40,6 +40,9 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.5
     version: 0.4.5(eslint@8.56.0)
+  rollup-plugin-polyfill-node:
+    specifier: ^0.13.0
+    version: 0.13.0(rollup@4.12.0)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -596,7 +599,7 @@ packages:
       fastq: 1.17.1
     dev: true
 
-  /@rollup/plugin-inject@5.0.5:
+  /@rollup/plugin-inject@5.0.5(rollup@4.12.0):
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -605,12 +608,13 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       estree-walker: 2.0.2
       magic-string: 0.30.7
+      rollup: 4.12.0
     dev: true
 
-  /@rollup/pluginutils@5.1.0:
+  /@rollup/pluginutils@5.1.0(rollup@4.12.0):
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -622,6 +626,7 @@ packages:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
+      rollup: 4.12.0
     dev: true
 
   /@rollup/rollup-android-arm-eabi@4.12.0:
@@ -1788,6 +1793,15 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rollup-plugin-polyfill-node@0.13.0(rollup@4.12.0):
+    resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
+    peerDependencies:
+      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.12.0)
+      rollup: 4.12.0
     dev: true
 
   /rollup@4.12.0:

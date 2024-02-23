@@ -25,6 +25,7 @@
     "typescript": "^5.3.3",
     "vite": "^5.1.4",
     "vite-plugin-external": "^4.3.0",
-    "@rollup/plugin-inject": "^5.0.5"
+    "@rollup/plugin-inject": "^5.0.5",
+    "rollup-plugin-polyfill-node": "^0.13.0"
   }
 }
