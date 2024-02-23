@@ -1,6 +1,5 @@
 import { resolve } from "path";
 
-import nodePolyfills from "rollup-plugin-polyfill-node";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import createExternal from "vite-plugin-external";
 
@@ -16,6 +15,8 @@ export default defineConfig({
         react: "React",
         "react-dom": "ReactDOM",
       },
+      interop: "auto",
+      nodeBuiltins: true,
     }),
   ],
   build: {
@@ -26,12 +27,6 @@ export default defineConfig({
       fileName: "sonar-build-app",
       formats: ["es"],
     },
-    rollupOptions: {
-      plugins: [
-        nodePolyfills({
-          include: null,
-        }),
-      ],
-    },
+    rollupOptions: {},
   },
 });
