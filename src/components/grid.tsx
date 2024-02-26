@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { DndContext, useDroppable } from "@dnd-kit/core";
+import { useDroppable } from "@dnd-kit/core";
 
 export type MainGridProps = {} & PropsWithChildren;
 

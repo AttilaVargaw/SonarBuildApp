@@ -109,7 +109,11 @@ function App() {
           <MainGrid>
             <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
               {elements.map(({ Element, label, ...draggableProps }) => (
-                <DraggableItem key={draggableProps.dragId} {...draggableProps}>
+                <DraggableItem
+                  style={{ position: "absolute" }}
+                  key={draggableProps.dragId}
+                  {...draggableProps}
+                >
                   <Element label={label} />
                 </DraggableItem>
               ))}
