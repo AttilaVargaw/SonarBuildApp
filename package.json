@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp ./demo.html ./dist",
+    "build": "tsc && vite build && cp ./demo.html ./dist && cp ./index.css ./dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
