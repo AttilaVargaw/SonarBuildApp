@@ -5,10 +5,16 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App.tsx";
 
-ReactDOM.createRoot(document.getElementById("intro3")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const root = document.getElementById("intro3");
 
-console.log("Sonar Build An Interaction is running");
+if (root) {
+  ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+
+  console.log("Sonar Build An Interaction is running");
+} else {
+  console.log("Root not found!");
+}
