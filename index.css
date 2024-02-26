@@ -2395,7 +2395,7 @@ textarea.w-select {
 .button:hover {
   border-color: var(--blue);
   background-color: var(--blue);
-  filter: blur();
+  /*filter: blur();*/
 }
 
 .button:focus {
@@ -2411,11 +2411,11 @@ textarea.w-select {
 }
 
 .button.blured {
-  filter: blur(10px);
+  /* filter: blur(10px); */
 }
 
 .button.blured:hover {
-  filter: blur();
+  /*filter: blur();*/
 }
 
 .button-text {
@@ -2488,14 +2488,14 @@ textarea.w-select {
   border-style: solid;
   border-width: 1px;
   border-color: var(--white) var(--white) var(--white) #fff;
-  filter: blur(5px);
+  /* filter: blur(5px); */
 }
 
 .circle {
   width: 60px;
   height: 60px;
   border: 1px solid var(--white);
-  filter: blur(5px);
+  /* filter: blur(5px); */
   border-radius: 70px;
 }
 
@@ -2515,8 +2515,8 @@ textarea.w-select {
   width: 100%;
   height: 56px;
   max-width: 800px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  /* -webkit-backdrop-filter: blur(5px); */
+  /* backdrop-filter: blur(5px); */
   background-color: rgba(0, 0, 255, 0.7);
   border-radius: 30px;
   justify-content: space-between;
@@ -2591,7 +2591,7 @@ textarea.w-select {
 
 .blurry-bg {
   z-index: 1;
-  filter: blur(5px);
+  /* filter: blur(5px); */
   display: none;
   position: absolute;
   top: 0;
@@ -2719,8 +2719,8 @@ textarea.w-select {
   }
 
   .menu {
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+   /*  -webkit-backdrop-filter: blur(5px); */
+    /* backdrop-filter: blur(5px); */
   }
 
   .menu.portfolio {
@@ -2902,7 +2902,7 @@ textarea.w-select {
 }
 
 body {
-  background-color: black;
+  background-color: navy;
 }
 
 .builder-body {

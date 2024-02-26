@@ -15,68 +15,81 @@ import { DraggableItem, DraggableItemProps } from "./components/draggableItem";
 import { MainGrid } from "./components/grid";
 
 type ElementType = {
-  Element: (props: unknown) => ReactElement;
-  HeaderElement: (props: {
-    name: string;
-    x: number;
-    y: number;
-  }) => ReactElement;
+  Element: (props: { label: string }) => ReactElement;
+  AddElement: (props: { name: string }) => ReactElement;
   name: string;
 };
 
+type ElementInstance = {
+  label: string;
+  Element: ElementType["Element"];
+} & DraggableItemProps;
+
 const addableElements = [
   {
-    HeaderElement: ({ name, ...props }) => (
-      <DraggableItem {...props} dragId="add-Circle" className="circle">
-        <div id="add-circle" className="circle">
-          {name}
-        </div>
-      </DraggableItem>
-    ),
-    name: "New-Circle",
+    AddElement: ({ name, ...props }) => <div className="circle">{name}</div>,
+    Element: ({ label, ...props }) => <div className="circle">{label}</div>,
+    name: "circle",
   },
   {
-    HeaderElement: ({ name, ...props }) => (
-      <DraggableItem {...props} dragId="add-box" className="box">
-        {name}
-      </DraggableItem>
-    ),
-    name: "New-Box",
+    AddElement: ({ name, ...props }) => <div className="box">{name}</div>,
+    name: "box",
+    Element: ({ label, ...props }) => <div className="box">{label}</div>,
   },
   {
-    HeaderElement: ({ name, ...props }) => (
-      <DraggableItem {...props} dragId="add-Box" className="button">
-        <a href="#" id="add-button" className="button blured w-inline-block">
-          <div className="button-text">{name}</div>
-        </a>
-      </DraggableItem>
+    AddElement: ({ name, ...props }) => (
+      <a href="#" className="button blured w-inline-block">
+        <div className="button-text">{name}</div>
+      </a>
     ),
-    name: "New-Button",
+    name: "button",
+    Element: ({ label, ...props }) => (
+      <a href="#" className="button blured w-inline-block">
+        <div className="button-text">{label}</div>
+      </a>
+    ),
   },
 ] as ElementType[];
 
 function App() {
-  const [elements, setElements] = useState<
-    ({ Element: ElementType["Element"] } & DraggableItemProps)[]
-  >([]);
+  const [elements, setElements] = useState<ElementInstance[]>([]);
 
-  const handleDragEnd = useCallback(({ over, active, delta }: DragEndEvent) => {
-    if (over) {
-      const newElement = addableElements.find(
-        (element) => element.name === active.id
-      )!;
+  const handleDragEnd = useCallback(
+    ({ over, active, delta }: DragEndEvent) => {
+      if (over && /add-/.test(active.id.toString())) {
+        const newElement = addableElements.find(
+          (element) => active.id === `add-${element.name}`
+        )!;
 
-      setElements([
-        ...elements,
-        {
-          Element: newElement.Element,
-          dragId: Date.now().toString(),
-          x: (active.rect.current.initial?.left ?? 0) + delta.x,
-          y: (active.rect.current.initial?.top ?? 0) + delta.y,
-        },
-      ]);
-    }
-  }, []);
+        setElements([
+          ...elements,
+          {
+            Element: newElement.Element,
+            dragId: `${newElement.name}-${Date.now().toString()}`,
+            left: delta.x, // adott cucc fele
+            top: delta.y - 90,
+            label: "Empty",
+          },
+        ]);
+      } else if (/(circle|box|button)-d*/.test(active.id.toString())) {
+        const element = elements.find(
+          (element) => element.dragId === active.id
+        )!;
+
+        setElements([
+          ...elements.filter((e) => element.dragId !== e.dragId),
+          {
+            Element: element.Element,
+            dragId: element.dragId,
+            left: (element.left ?? 0) + delta.x,
+            top: (element.top ?? 0) + delta.y,
+            label: element.label,
+          },
+        ]);
+      }
+    },
+    [elements]
+  );
 
   const mouseSensor = useSensor(MouseSensor, {});
   const touchSensor = useSensor(TouchSensor, {});
@@ -84,21 +97,19 @@ function App() {
 
   return (
     <div className="section-inner builder">
-      <DndContext
-        sensors={sensors}
-        onDragEnd={handleDragEnd}
-        onDragStart={() => console.log("drag")}
-      >
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <div className="builder-header">
-          {addableElements.map(({ HeaderElement, name }) => (
-            <HeaderElement key={name} name={name} x={0} y={0} />
+          {addableElements.map(({ AddElement: HeaderElement, name }) => (
+            <DraggableItem key={name} dragId={`add-${name}`}>
+              <HeaderElement name={name} />
+            </DraggableItem>
           ))}
         </div>
         <div className="builder-body">
-          <MainGrid id="main-grid">
-            {elements.map(({ Element, ...draggableProps }) => (
+          <MainGrid>
+            {elements.map(({ Element, label, ...draggableProps }) => (
               <DraggableItem key={draggableProps.dragId} {...draggableProps}>
-                {<Element />}
+                <Element label={label} />
               </DraggableItem>
             ))}
           </MainGrid>

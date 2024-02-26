@@ -1,5 +1,4 @@
-import classNames from "classnames";
-import { PropsWithChildren, forwardRef, useState } from "react";
+import { PropsWithChildren } from "react";
 
 import { useDraggable, type DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
@@ -16,17 +15,20 @@ export type DraggableItemProps = {
   listeners?: DraggableSyntheticListeners;
   style?: React.CSSProperties;
   buttonStyle?: React.CSSProperties;
-  transform?: Transform | null;
+  position?: Transform | null;
   dragId: string;
-  y: number;
-  x: number;
   className?: string;
+  left?: number;
+  top?: number;
 } & PropsWithChildren;
 
 export function DraggableItem({
   dragId,
   style,
   className,
+  position,
+  left,
+  top,
   ...props
 }: DraggableItemProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -34,20 +36,28 @@ export function DraggableItem({
   });
 
   const transformedStyle = transform
-    ? {
+    ? ({
         ...style,
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      }
-    : undefined;
+        transform: `translate3d(${transform.x + (left ?? 0)}px, ${
+          transform.y + (top ?? 0)
+        }px, 0)`,
+        position: "relative",
+      } as React.CSSProperties)
+    : ({
+        ...style,
+        left,
+        top,
+        position: "relative",
+      } as React.CSSProperties);
 
   return (
     <div
+      {...props}
+      {...listeners}
+      {...attributes}
       ref={setNodeRef}
       style={transformedStyle}
       className={className}
-      {...listeners}
-      {...attributes}
-      {...props}
     ></div>
   );
 }

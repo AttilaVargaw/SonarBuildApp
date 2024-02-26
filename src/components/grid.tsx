@@ -2,13 +2,11 @@ import { PropsWithChildren, useState } from "react";
 
 import { DragOverlay, useDroppable } from "@dnd-kit/core";
 
-export type MainGridProps = {
-  id: string;
-} & PropsWithChildren;
+export type MainGridProps = {} & PropsWithChildren;
 
-export function MainGrid({ id, children }: MainGridProps) {
+export function MainGrid({ children }: MainGridProps) {
   const { isOver, setNodeRef } = useDroppable({
-    id,
+    id: "main-grid",
   });
 
   const [activeId, setActiveId] = useState(null);
@@ -18,7 +16,8 @@ export function MainGrid({ id, children }: MainGridProps) {
     height: "100vh",
     width: "100%",
     color: "black",
-  };
+    display: "flex",
+  } as React.CSSProperties;
 
   return (
     <div ref={setNodeRef} style={style}>
