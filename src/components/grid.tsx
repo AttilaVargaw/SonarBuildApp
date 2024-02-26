@@ -1,6 +1,6 @@
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
 
-import { DragOverlay, useDroppable } from "@dnd-kit/core";
+import { useDroppable } from "@dnd-kit/core";
 
 export type MainGridProps = {} & PropsWithChildren;
 
@@ -8,8 +8,6 @@ export function MainGrid({ children }: MainGridProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: "main-grid",
   });
-
-  const [activeId, setActiveId] = useState(null);
 
   const style = {
     opacity: isOver ? 1 : 0.5,

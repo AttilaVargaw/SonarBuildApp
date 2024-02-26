@@ -27,23 +27,23 @@ type ElementInstance = {
 
 const addableElements = [
   {
-    AddElement: ({ name, ...props }) => <div className="circle">{name}</div>,
-    Element: ({ label, ...props }) => <div className="circle">{label}</div>,
+    AddElement: ({ name }) => <div className="circle">{name}</div>,
+    Element: ({ label }) => <div className="circle">{label}</div>,
     name: "circle",
   },
   {
-    AddElement: ({ name, ...props }) => <div className="box">{name}</div>,
+    AddElement: ({ name }) => <div className="box">{name}</div>,
     name: "box",
-    Element: ({ label, ...props }) => <div className="box">{label}</div>,
+    Element: ({ label }) => <div className="box">{label}</div>,
   },
   {
-    AddElement: ({ name, ...props }) => (
+    AddElement: ({ name }) => (
       <a href="#" className="button blured w-inline-block">
         <div className="button-text">{name}</div>
       </a>
     ),
     name: "button",
-    Element: ({ label, ...props }) => (
+    Element: ({ label }) => (
       <a href="#" className="button blured w-inline-block">
         <div className="button-text">{label}</div>
       </a>
