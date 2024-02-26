@@ -107,11 +107,13 @@ function App() {
         </div>
         <div className="builder-body">
           <MainGrid>
-            {elements.map(({ Element, label, ...draggableProps }) => (
-              <DraggableItem key={draggableProps.dragId} {...draggableProps}>
-                <Element label={label} />
-              </DraggableItem>
-            ))}
+            <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+              {elements.map(({ Element, label, ...draggableProps }) => (
+                <DraggableItem key={draggableProps.dragId} {...draggableProps}>
+                  <Element label={label} />
+                </DraggableItem>
+              ))}
+            </DndContext>
           </MainGrid>
         </div>
       </DndContext>

@@ -18,10 +18,8 @@ export function MainGrid({ children }: MainGridProps) {
   } as React.CSSProperties;
 
   return (
-    <DndContext>
-      <div ref={setNodeRef} style={style}>
-        {children}
-      </div>
-    </DndContext>
+    <div ref={setNodeRef} style={style}>
+      {children}
+    </div>
   );
 }

@@ -48,7 +48,7 @@ export function DraggableItem({
         ...style,
         left,
         top,
-        position: "absolute",
+        position: "relative",
       } as React.CSSProperties);
 
   return (
