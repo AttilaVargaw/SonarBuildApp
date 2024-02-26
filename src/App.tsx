@@ -67,7 +67,7 @@ function App() {
             Element: newElement.Element,
             dragId: `${newElement.name}-${Date.now().toString()}`,
             left: delta.x, // adott cucc fele
-            top: delta.y - 90,
+            top: delta.y, //- 90,
             label: "Empty",
           },
         ]);

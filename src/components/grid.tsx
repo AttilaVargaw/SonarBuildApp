@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { useDroppable } from "@dnd-kit/core";
+import { DndContext, useDroppable } from "@dnd-kit/core";
 
 export type MainGridProps = {} & PropsWithChildren;
 
@@ -18,8 +18,10 @@ export function MainGrid({ children }: MainGridProps) {
   } as React.CSSProperties;
 
   return (
-    <div ref={setNodeRef} style={style}>
-      {children}
-    </div>
+    <DndContext>
+      <div ref={setNodeRef} style={style}>
+        {children}
+      </div>
+    </DndContext>
   );
 }

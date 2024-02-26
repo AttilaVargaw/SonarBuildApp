@@ -42,12 +42,13 @@ export function DraggableItem({
           transform.y + (top ?? 0)
         }px, 0)`,
         position: "relative",
+        cursor: "grabbing"
       } as React.CSSProperties)
     : ({
         ...style,
         left,
         top,
-        position: "relative",
+        position: "absolute",
       } as React.CSSProperties);
 
   return (
