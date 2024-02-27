@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { BuilderelementProps } from "./builderElementProps";
-
 const Container = styled.div`
   width: 60px;
   height: 60px;
@@ -11,6 +9,6 @@ const Container = styled.div`
   /* filter: blur(5px); */
 `;
 
-export function Box({ label }: BuilderelementProps) {
-  return <Container>{}</Container>;
+export function Box() {
+  return <Container></Container>;
 }

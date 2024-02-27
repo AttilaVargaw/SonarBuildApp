@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { BuilderelementProps } from "./builderElementProps";
-
 const Container = styled.div`
   width: 60px;
   height: 60px;
@@ -12,6 +10,6 @@ const Container = styled.div`
   border-radius: 70px;
 `;
 
-export function Circle({ label }: BuilderelementProps) {
+export function Circle() {
   return <Container></Container>;
 }

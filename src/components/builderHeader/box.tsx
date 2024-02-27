@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
 
-import { AddableElementProps } from "./addableElementProps";
-
 const Container = styled.div`
   width: 60px;
   height: 60px;
@@ -11,6 +9,6 @@ const Container = styled.div`
   /* filter: blur(5px); */
 `;
 
-export function Box({ name }: AddableElementProps) {
+export function Box() {
   return <Container />;
 }

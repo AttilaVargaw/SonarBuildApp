@@ -9,7 +9,6 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useUniqueId } from "@dnd-kit/utilities";
 
 import { addableElements } from "../../addableElements";
 import { useBuilderElements } from "../../hooks/useBuilderElements";
@@ -40,7 +39,7 @@ export function BuilderHeader() {
   const { builderElements, setBuilderItems } = useBuilderElements();
 
   const handleDragEnd = useCallback(
-    ({ active, delta, over, collisions }: DragEndEvent) => {
+    ({ active, delta, collisions }: DragEndEvent) => {
       const element = addableElements.find(
         (element) => element.name === active.id
       )!;
