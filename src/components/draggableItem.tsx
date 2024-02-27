@@ -20,36 +20,41 @@ export type DraggableItemProps = {
   className?: string;
   left?: number;
   top?: number;
+  relative?: boolean;
 } & PropsWithChildren;
 
 export function DraggableItem({
   dragId,
   style,
   className,
-  position,
   left,
   top,
+  relative,
   ...props
 }: DraggableItemProps) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: dragId,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: dragId,
+    });
 
-  const transformedStyle = transform
-    ? ({
-        ...style,
-        transform: `translate3d(${transform.x + (left ?? 0)}px, ${
-          transform.y + (top ?? 0)
-        }px, 0)`,
-        position: "relative",
-        cursor: "grabbing"
-      } as React.CSSProperties)
-    : ({
-        ...style,
-        left,
-        top,
-        position: "relative",
-      } as React.CSSProperties);
+  //
+
+  const transformedStyle =
+    transform && isDragging
+      ? ({
+          ...style,
+          transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+          position: relative ? "relative" : "absolute",
+          cursor: "grabbing",
+          left,
+          top,
+        } as React.CSSProperties)
+      : ({
+          ...style,
+          left,
+          top,
+          position: relative ? "relative" : "absolute",
+        } as React.CSSProperties);
 
   return (
     <div

@@ -2415,7 +2415,7 @@ textarea.w-select {
 }
 
 .button.blured:hover {
-  /*filter: blur();*/
+  /* filter: blur(); */
 }
 
 .button-text {
@@ -2591,7 +2591,7 @@ textarea.w-select {
 
 .blurry-bg {
   z-index: 1;
-  /* filter: blur(5px); */
+  filter: blur(5px);
   display: none;
   position: absolute;
   top: 0;
@@ -2906,5 +2906,5 @@ body {
 }
 
 .builder-body {
-  height: 100vh;
+  height: 80vh;
 }
