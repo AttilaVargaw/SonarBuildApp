@@ -1,4 +1,5 @@
 import { PropsWithChildren, useCallback } from "react";
+import styled from "styled-components";
 
 import {
   DndContext,
@@ -15,6 +16,13 @@ import { DraggableItem } from "../draggableItem";
 
 export type BuilderBodyProps = PropsWithChildren;
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+`;
+
 export function BuilderBody() {
   const { builderElements, setBuilderItems } = useBuilderElements();
 
@@ -24,7 +32,7 @@ export function BuilderBody() {
 
   const style = {
     opacity: isOver ? 1 : 0.5,
-    height: "80vh",
+    height: "85vh",
     width: "100%",
     color: "black",
     display: "flex",
@@ -55,7 +63,7 @@ export function BuilderBody() {
   const sensors = useSensors(mouseSensor, touchSensor);
 
   return (
-    <div className="builder-body" ref={setNodeRef} style={style}>
+    <Container ref={setNodeRef} style={style}>
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         {builderElements.map(({ Element, label, ...draggableProps }) => (
           <DraggableItem key={draggableProps.dragId} {...draggableProps}>
@@ -63,6 +71,6 @@ export function BuilderBody() {
           </DraggableItem>
         ))}
       </DndContext>
-    </div>
+    </Container>
   );
 }

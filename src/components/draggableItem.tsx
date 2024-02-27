@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 
 import { useDraggable, type DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
+import styled from "styled-components";
 
 export enum Axis {
   All,
@@ -22,6 +23,10 @@ export type DraggableItemProps = {
   top?: number;
   relative?: boolean;
 } & PropsWithChildren;
+
+const Container = styled.div`
+  cursor: grab;
+`;
 
 export function DraggableItem({
   dragId,
@@ -57,13 +62,13 @@ export function DraggableItem({
         } as React.CSSProperties);
 
   return (
-    <div
+    <Container
       {...props}
       {...listeners}
       {...attributes}
       ref={setNodeRef}
       style={transformedStyle}
       className={className}
-    ></div>
+    ></Container>
   );
 }
