@@ -1,19 +1,13 @@
 import "./App.css";
 
-import { DndContext } from "@dnd-kit/core";
-
-import { BuilderBody } from "./components/Builder/builder";
-import { BuilderHeader } from "./components/builderHeader/builderHeader";
+import { Builder } from "./components/Builder/builder";
 import { BuilderElementsProvider } from "./hooks/useBuilderElements";
 
 function App() {
   return (
     <div className="section-inner builder">
       <BuilderElementsProvider>
-        <DndContext>
-          <BuilderHeader />
-          <BuilderBody />
-        </DndContext>
+        <Builder />
       </BuilderElementsProvider>
     </div>
   );
