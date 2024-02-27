@@ -42,8 +42,6 @@ export function DraggableItem({
       id: dragId,
     });
 
-  //
-
   const transformedStyle =
     transform && isDragging
       ? ({

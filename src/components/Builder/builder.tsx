@@ -8,11 +8,14 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { createSnapModifier, restrictToWindowEdges } from "@dnd-kit/modifiers";
 
 import { addableElements } from "../../addableElements";
 import { useBuilderElements } from "../../hooks/useBuilderElements";
 import { BuilderBody } from "./builderBody/builder";
 import { BuilderHeader } from "./builderHeader/builderHeader";
+
+const modifiers = [createSnapModifier(20), restrictToWindowEdges];
 
 export function Builder() {
   const mouseSensor = useSensor(MouseSensor, {});
@@ -85,7 +88,11 @@ export function Builder() {
   );
 
   return (
-    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+    <DndContext
+      modifiers={modifiers}
+      onDragEnd={handleDragEnd}
+      sensors={sensors}
+    >
       <BuilderHeader />
       <BuilderBody />
     </DndContext>
