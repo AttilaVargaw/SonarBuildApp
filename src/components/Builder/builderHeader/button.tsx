@@ -52,6 +52,7 @@ const Text = styled.div`
   font-weight: 400;
   line-height: 100%;
   text-decoration: none;
+  pointer-events: none;
 `;
 
 export function Button({ name }: AddableElementProps) {
