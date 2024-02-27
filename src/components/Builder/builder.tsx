@@ -30,6 +30,9 @@ export function Builder() {
             (element) => `add-${element.name}` === active.id
           );
 
+          const { top: bodyTop, left: bodyLeft } =
+            document.body.getBoundingClientRect();
+
           const { top, left } = (
             activatorEvent.target as Element
           ).getBoundingClientRect();
@@ -51,8 +54,8 @@ export function Builder() {
               {
                 Element: element.Element,
                 dragId: `${element.name}-${Date.now().toString()}`,
-                left,
-                top,
+                left: left - bodyLeft,
+                top: top - bodyTop,
                 label: "Empty",
               },
             ]);
