@@ -56,7 +56,7 @@ const Text = styled.div`
 
 export function Button({ label }: BuilderelementProps) {
   return (
-    <Container href="#">
+    <Container>
       <Text>{label}</Text>
     </Container>
   );
